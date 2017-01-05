@@ -1,4 +1,4 @@
-/** Maquina de estados
+/** \page "Maquinas de Estados"
  *
  * Uma maquina de estados eh um conceito abstrato. Trata-se de um dispositivo
  * que sempre assume um, e apenas um, estado discreto entre um conjunto de
@@ -37,10 +37,45 @@
 #define N_ESTADOS 4
 
 unsigned int estado = 0; /**< Numero do estado atual */
-const unsigned int proximo_estado[N_ESTADOS] = {1, 2, 3, 0}; /**< Tabela de transicao */
-const unsigned int saidas[N_ESTADOS] = {0, 2, 1, 2}; /**< Saidas para cada estado */
+unsigned int tabela_estado[N_ESTADOS] = {1, 3, 0, 2}; /**< Tabela de transicao */
+unsigned int saidas[N_ESTADOS] = {0, 2, 1, 2}; /**< Saidas para cada estado */
 
 
+/** Avanca uma maquina para o proximo estado
+ *
+ * A passagem dos parametros por referencia permite que a mesma funcao seja
+ * usada para operar sobre varias maquinas de estado, inclusive as que tem
+ * escopo local, desde que sejam definidas de forma compativel com a definicao
+ * da maquina deixada como exemplo.
+ * */
+void proximo_estado(unsigned int *registrador_de_estado, /**< [in,out] Ponteiro para o registrador de estado */
+    unsigned int *tabela_de_transicao /**< [in] Ponteiro para tabela de transicao*/ )
+{
+  (*registrador_de_estado) = tabela_de_transicao[(*registrador_de_estado)];
+}
 
 
+/** Calcula a saida de uma maquina de estados */
+unsigned int saida(unsigned int *registrador_de_estado, /**< [in] Ponteiro para o registrador de estado */
+    unsigned int *tabela_de_saidas /**< [in] Ponteiro para tabela de saidas */ )
+{
+  return tabela_de_saidas[(*registrador_de_estado)];
+}
+
+
+#include <stdio.h>
+
+/** Programa exemplo */
+int main() {
+  int i;
+  for (i=0; i<10; i++) {
+    printf("%02d\tEstado: %02d\tSaida: %02d\n", i, estado, saida(&estado, saidas));
+    proximo_estado(&estado, tabela_estado);
+  }
+  return 0;
+}
+
+/* Compilar: gcc -ofsm 01-maquina_de_estados.c
+ * Executar: ./fsm
+ * */
 
