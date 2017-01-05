@@ -99,4 +99,13 @@ int main() {
   printf("%c\n", c);
   recuperar_dado(&bc, &c);
   printf("%c\n", c);
+  gravar_dado(&bc, 'd');
+  gravar_dado(&bc, 'e');
+  gravar_dado(&bc, 'f');
+  recuperar_dado(&bc, &c);
+  printf("%c\n", c);
+  recuperar_dado(&bc, &c);
+  printf("%c\n", c);
+  recuperar_dado(&bc, &c);
+  printf("%c\n", c);
 }
