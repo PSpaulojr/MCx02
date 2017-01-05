@@ -1,5 +1,7 @@
 /** \page "Maquinas de Estados"
  *
+ * # Como usar maquinas de estado
+ *
  * Uma maquina de estados eh um conceito abstrato. Trata-se de um dispositivo
  * que sempre assume um, e apenas um, estado discreto entre um conjunto de
  * estados possiveis. Essa abstracao matematica pode ser usada para modelar
@@ -13,17 +15,22 @@
  * possibilidade eh que um sistema de agendamento preveja atrasos maiores em
  * dias de chuva.
  *
- * Uma maquina de estados se baseia em dois componentes:
- * 1) Um registro do numero do estado em que estamos neste momento
- * 2) Uma tabela de transicoes de estado
+ * Uma maquina de estados se baseia em tres componentes:
+ *
+ * 1. Um registro do numero do estado em que estamos neste momento
+ * 1. Uma tabela de transicoes de estado
+ * 1. (opcional) Uma tabela que relaciona estados a saidas correspondentes
+ *
+ * \image html fsm.jpg height=400
  *
  * O registro do estado atual pode ser realizado usando uma variavel inteira. A
  * tabela de transicoes de estado, por sua vez, pode ser:
- * a) Implicita (se estamos falando de um contador, entao nao eh preciso guardar
+ *
+ * a. Implicita (se estamos falando de um contador, entao nao eh preciso guardar
  * uma tabela explicitamente, ja que basta somar 1 ao estado a cada nova
  * contagem)
- * b) Explicita por meio de estruturas if-then-else
- * c) Explicita por meio de um vetor
+ * a. Explicita por meio de estruturas if-then-else
+ * a. Explicita por meio de um vetor
  *
  * Para usar uma maquina de estados, deve ser possivel, no minimo, ativar a
  * mudanca de estado. Opcionalmente, pode ser possivel reiniciar a maquina ou
