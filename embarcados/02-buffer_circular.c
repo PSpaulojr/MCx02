@@ -34,17 +34,17 @@
  * processado).
  * */
 
-#define TAM_BUFFER 5
+#define TAM_BUFFER 5 /**< Numero de elementos armazenaveis no buffer */
 
 /** Estrutura para buffer circular
  *
  * Como ha muitos parametros relacionados a um buffer circular, convem definir
  * uma estrutura que agregue todos eles. */
 typedef struct buffer_circular {
-  unsigned int n_elementos;
-  char dados[TAM_BUFFER];
-  unsigned int pont_gravacao;
-  unsigned int pont_leitura;
+  unsigned int n_elementos; /**< Numero de elementos armazenados no buffer */
+  char dados[TAM_BUFFER]; /**< Vetor com os dados armazenados no buffer */
+  unsigned int pont_gravacao; /**< Indice do vetor em que serao gravados dados */
+  unsigned int pont_leitura; /**< Indice do vetor em que serao lidos os dados */
 } buffer_circular;
 
 /** Inicializar buffer circular
